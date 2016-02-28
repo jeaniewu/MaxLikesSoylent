@@ -6,7 +6,7 @@ public class Ghost : MonoBehaviour
 	public Transform player;
 
 	public bool staredAt = false;
-	public bool isMoving = true;
+	public bool isMoving;
 	public int moveSpeed = 2;
 
 	public int farRange = 5;
@@ -23,6 +23,8 @@ public class Ghost : MonoBehaviour
 		// Face the player and rotate 180 degrees because the model is fucked up. 
 		transform.LookAt (player);
 		transform.rotation *= Quaternion.Euler (0, 180f, 0);
+
+		isMoving = true;
 	}
 
 	void Update ()
