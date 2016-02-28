@@ -19,7 +19,7 @@ public class Player : MonoBehaviour {
 	void Update () {
 	 
 
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return)) {
 
 		for (int delta_degree = 60; delta_degree < 130; delta_degree++) {
 			Quaternion q = Quaternion.AngleAxis (delta_degree - 180, Vector3.up);

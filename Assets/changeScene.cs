@@ -11,7 +11,7 @@ public class changeScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey (KeyCode.R)) {
+		if (Input.GetKey (KeyCode.F)) {
 			SceneManager.LoadScene ("Main");
 		}
 	}

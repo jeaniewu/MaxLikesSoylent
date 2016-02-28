@@ -8,7 +8,7 @@ public class Ghost : MonoBehaviour
 
 	public bool staredAt = false;
 	public bool isMoving;
-	public int moveSpeed = 2;
+	public int moveSpeed = 4;
 
 
 	public int farRange = 5;
@@ -26,7 +26,7 @@ public class Ghost : MonoBehaviour
 		gameManager = GameObject.FindWithTag ("GameManager");
 
 		if (gameManager.GetComponent<LevelManager> ().getGhostCount () % 2 == 0) {
-			moveSpeed++;
+			moveSpeed+=2;
 		}
 		// Face the player and rotate 180 degrees because the model is fucked up. 
 		transform.LookAt (player);

@@ -15,8 +15,8 @@ public class Scoreboard : MonoBehaviour
 
 	void Update ()
 	{
-		if (Input.GetKey (KeyCode.Return)) {
-			SceneManager.LoadScene ("Main");
-		}
+//		if (Input.GetKey (KeyCode.Return)) {
+//			SceneManager.LoadScene ("Main");
+//		}
 	}
 }
