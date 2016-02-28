@@ -8,7 +8,8 @@ public class Ghost : MonoBehaviour
 
 	public bool staredAt = false;
 	public bool isMoving;
-	public int moveSpeed = 2;
+	public int moveSpeed = 4;
+
 
 	public int farRange = 5;
 	public int farScore = 1;
@@ -17,10 +18,16 @@ public class Ghost : MonoBehaviour
 	public int closeRange = 1;
 	public int closeScore = 10;
 
+	public GameObject gameManager;
+
 	void Start ()
 	{
 		player = GameObject.FindWithTag ("Player").transform;
+		gameManager = GameObject.FindWithTag ("GameManager");
 
+		if (gameManager.GetComponent<LevelManager> ().getGhostCount () % 2 == 0) {
+			moveSpeed+=2;
+		}
 		// Face the player and rotate 180 degrees because the model is fucked up. 
 		transform.LookAt (player);
 		transform.rotation *= Quaternion.Euler (0, 180f, 0);
@@ -74,6 +81,7 @@ public class Ghost : MonoBehaviour
 	void gameOver(){
 		SceneManager.LoadScene ("Finish");
 	}
+
 
 	//	void Death ()
 	//	{
