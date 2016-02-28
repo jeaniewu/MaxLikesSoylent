@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Scoreboard : MonoBehaviour
 {
-	Text textYourScore;
+	Text scoreboard;
 
 	void Start ()
 	{
-		textYourScore = GetComponent<Text> ();
-		textYourScore.text = "Your Score: " + GetComponent<LevelManager>().GetScore ().ToString ();
+		scoreboard = GetComponent<Text> ();
+		scoreboard.text = "Your Score: " + GetComponentInParent<LevelManager> ().GetScore ().ToString ();
 	}
 
 	void Update ()
