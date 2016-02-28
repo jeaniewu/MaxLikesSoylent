@@ -33,7 +33,7 @@ public class Ghost : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		
 
 		//rotate towards player
 		transform.rotation = Quaternion.Slerp (transform.rotation,
@@ -54,12 +54,27 @@ public class Ghost : MonoBehaviour {
 
 	}
 
+	void OnBecameVisible() {
+		staredAt = true;
+	}
+
+	void OnBecameInvisible() {
+		staredAt = false;
+	}
+
 	//on trigger/collision, jump scare method
 	void OnTriggerEnter (Collider other) {
 		if (other.gameObject.tag == "Player") {
 			JumpScare ();
 			//Debug.Log("bye");
+
 		}
+	}
+
+		
+
+	void OnTriggerExit (Collider other) {
+		setStaredAt (false);
 	}
 
 	void Death () {
@@ -97,7 +112,7 @@ public class Ghost : MonoBehaviour {
 		Level.ItsGameOver();
 
 		}
-	void setStaredAt(bool boolean) {
+	public void setStaredAt(bool boolean) {
 		staredAt = boolean;
 	}
 }
