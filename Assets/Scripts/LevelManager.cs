@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 
 	public int score;
 	public int ghostCount;
+	public int kills;
 
 	// Score thresholds for each level.
 	public static int l1 = 0;
@@ -18,6 +19,8 @@ public class LevelManager : MonoBehaviour
 		gameOver = false;
 		score = 0;
 		ghostCount = 1;
+		kills = 0;
+		GetComponent<GhostManager> ().generateGhosts (ghostCount);
 	}
 
 	public int GetScore ()
@@ -30,16 +33,20 @@ public class LevelManager : MonoBehaviour
 		return ghostCount;
 	}
 
-	public void AddScore (int x)
+	public void incKills () {
+		kills++;
+	}
+
+	public void addScore (int x)
 	{
 		score += x;
-		if (score >= l2) {
-			ghostCount = 2;
-
-		}
-		if (score >= l3) {
-			ghostCount = 3;
-		}
+//		if (score >= l2) {
+//			ghostCount = 2;
+//
+//		}
+//		if (score >= l3) {
+//			ghostCount = 3;
+//		}
 	}
 
 	public void endGame ()
@@ -49,6 +56,11 @@ public class LevelManager : MonoBehaviour
 
 	void Update ()
 	{
+		if (kills == ghostCount) {
+			ghostCount++;
+			kills = 0;
+			GetComponent<GhostManager> ().generateGhosts (ghostCount);
+		}
 		if (Input.GetKey (KeyCode.Escape)) {
 			Application.Quit ();
 		}

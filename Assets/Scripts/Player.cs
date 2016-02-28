@@ -4,12 +4,14 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 	public GameObject player;
+	public GameObject GameManager;
 	public float maxDistance = 20.0f;
 	public bool keydown = false;
 	// Use this for initialization
 	void Start () {
 
 		player = GameObject.FindWithTag ("Player");
+		GameManager = GameObject.FindWithTag ("GameManager");
 	
 	}
 	
@@ -17,7 +19,7 @@ public class Player : MonoBehaviour {
 	void Update () {
 	 
 
-		if (Input.GetKeyDown (KeyCode.F)) {
+		if (Input.GetMouseButtonDown(0)) {
 
 		for (int delta_degree = 60; delta_degree < 130; delta_degree++) {
 			Quaternion q = Quaternion.AngleAxis (delta_degree - 180, Vector3.up);
@@ -30,6 +32,9 @@ public class Player : MonoBehaviour {
 				if (hit.collider != null && hit.collider.CompareTag ("Ghost")) {
 					Debug.Log (hit.collider.name);
 					Destroy (hit.collider.gameObject);
+						GameManager.GetComponent<LevelManager> ().incKills ();
+						int score = (int)(1 / (hit.distance / 1500));
+						GameManager.GetComponent<LevelManager> ().addScore (score);
 						break;
 					Debug.Log ("F was pressed!");
 				}
