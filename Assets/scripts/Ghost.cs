@@ -12,7 +12,7 @@ public class Ghost : MonoBehaviour {
 	public Transform targetTransform;
 	public int movespeed = 2;
 	public int rotationspeed = 2;
-	public bool staredAt = true;
+	public bool staredAt = false;
 	public int farRange = 5;
 	public int farScore = 1;
 	public int mediumRange = 3;
