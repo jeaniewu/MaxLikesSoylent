@@ -11,7 +11,6 @@ public class Level : MonoBehaviour {
 	public static int levelthree = 50;
 	public static int currNumGhost = 0;
 
-
 	public static int GetScore() {
 		return score;
 	}
