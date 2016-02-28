@@ -35,4 +35,11 @@ public class Level : MonoBehaviour {
 	public static void ItsGameOver () {
 		gameover = true;
 	}
+
+	void Update(){
+		if (Input.GetKey ("escape")) {
+
+			Application.Quit ();
+		}
+	}
 }
