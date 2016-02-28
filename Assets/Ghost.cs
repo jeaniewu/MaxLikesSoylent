@@ -25,7 +25,7 @@ public class Ghost : MonoBehaviour {
 
 		target = GameObject.FindWithTag ("Player");
 		targetTransform = target.transform;
-		levelManager = GameObject.FindWithTag ("LevelManager");
+//		levelManager = GameObject.FindWithTag ("LevelManager");
 
 	}
 
@@ -34,14 +34,14 @@ public class Ghost : MonoBehaviour {
 	void Update () {
 
 		//rotate towards player
-		transform.rotation = Quaternion.Slerp (transform,
+		transform.rotation = Quaternion.Slerp (transform.rotation,
 			Quaternion.LookRotation (targetTransform.position - transform.position),
 			rotationspeed * Time.deltaTime);
 
 		//walk forward towards player
-		while (!staredAt) {
+		//while (!staredAt) {
 			transform.position += transform.forward * movespeed * Time.deltaTime;
-		}
+		//}
 
 		//within jump scare range? if yes, jump scare animation, and game over true.
 		//on collision
@@ -49,26 +49,27 @@ public class Ghost : MonoBehaviour {
 		//if (Vector3.Distance (transform.position, targetTransform.position) < jumpScareRange) {
 		//	JumpScare ();
 
-		OnCollisionEnter ();
+//		OnCollisionEnter ();
 
 	}
 
-	void OnCollisionEnter (Collision col) {
-		if (collider.gameObject.name == "Player") {
-			JumpScare ();
-		}
-	}
+//	void OnCollisionEnter (Collision col) {
+//		if (collider.gameObject.name == "Player") {
+//			JumpScare ();
+//		}
+//	}
 
-	void Death () {
-		//update level manager score
-
-		if ((transform.position
-			levelManager.
-			Destroy (gameObject);
-			}
-
-			void JumpScare() {
-				* //ghost comes in front of you, music plays
-				GameOver (); -->SceneManager.LoadScene() move to level manager?
-				*/
-			}
+//	void Death () {
+//		//update level manager score
+//
+//		if ((transform.position
+//			levelManager.
+//			Destroy (gameObject);
+//			}
+//
+//			void JumpScare() {
+//				* //ghost comes in front of you, music plays
+//				GameOver (); -->SceneManager.LoadScene() move to level manager?
+//				*/
+//			}
+}
