@@ -10,7 +10,7 @@ public class Scoreboard : MonoBehaviour
 	void Start ()
 	{
 		textYourScore = GetComponent<Text> ();
-		textYourScore.text = "Your Score: " + (LevelManager.GetScore ().ToString ());
+		textYourScore.text = "Your Score: " + GetComponent<LevelManager>().GetScore ().ToString ();
 	}
 
 	void Update ()

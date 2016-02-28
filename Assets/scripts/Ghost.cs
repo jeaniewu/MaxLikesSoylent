@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Ghost : MonoBehaviour
 {
@@ -65,6 +66,13 @@ public class Ghost : MonoBehaviour
 
 		// Stay in front of the player.
 		isMoving = false;
+
+		Invoke ("gameOver", 2f);
+	}
+
+
+	void gameOver(){
+		SceneManager.LoadScene ("Finish");
 	}
 
 	//	void Death ()

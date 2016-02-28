@@ -3,39 +3,46 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
-	public static bool gameOver = false;
+	public bool gameOver;
 
-	public static int score = 0;
-	public static int level = 1;
-	public static int ghostCount = 3;
+	public int score;
+	public int ghostCount;
 
 	// Score thresholds for each level.
 	public static int l1 = 0;
 	public static int l2 = 30;
 	public static int l3 = 50;
 
-	public static int GetScore ()
+
+	void Start(){
+		gameOver = false;
+		score = 0;
+		ghostCount = 1;
+	}
+
+	public int GetScore ()
 	{
 		return score;
 	}
 
-	public static int getGhostCount ()
+	public int getGhostCount ()
 	{
 		return ghostCount;
 	}
 
-	public static void AddScore (int x)
+	public void AddScore (int x)
 	{
 		score += x;
 		if (score >= l2) {
-			level = 2;
+			ghostCount = 2;
+
 		}
 		if (score >= l3) {
-			level = 3;
+			ghostCount = 3;
 		}
 	}
 
-	public static void endGame ()
+	public void endGame ()
 	{
 		gameOver = true;
 	}

@@ -8,7 +8,7 @@ public class GhostManager : MonoBehaviour
 	void Start ()
 	{
 		playerPos = GameObject.FindWithTag ("Player").transform.position;
-		for (int i = 0; i <= LevelManager.getGhostCount (); i++) {
+		for (int i = 0; i < GetComponent<LevelManager>().getGhostCount (); i++) {
 			Vector3 ghostPos = RandomCircle (playerPos, 25);
 			Quaternion ghostRot = Quaternion.FromToRotation (Vector3.forward, playerPos - ghostPos);
 			Instantiate (Resources.Load ("Bunny"), ghostPos, ghostRot);
