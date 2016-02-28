@@ -20,14 +20,21 @@ public class Ghost : MonoBehaviour {
 	public int closeRange = 1;
 	public int closeScore = 10;
 
+	public bool isMoving;
+
 	void Start () {
 		//initialized x distance from camera(in level manager script);
 		//detect main camera (player), update direction.
 
 		target = GameObject.FindWithTag ("Player");
 		targetTransform = target.transform;
+		transform.LookAt(targetTransform);
+		transform.rotation *= Quaternion.Euler(0,180f,0);
+		isMoving = true;
 
-
+//		Vector3 targetAngles = transform.eulerAngles + 180f * Vector3.up; // what the new angles should be
+		
+//		transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, 1f * Time.deltaTime); 
 	}
 
 
@@ -35,14 +42,16 @@ public class Ghost : MonoBehaviour {
 	void Update () {
 		
 
-		//rotate towards player
-		transform.rotation = Quaternion.Slerp (transform.rotation,
-			Quaternion.LookRotation (targetTransform.position - transform.position),
-			rotationspeed * Time.deltaTime);
+//		//rotate towards player
+//		transform.rotation = Quaternion.Slerp (transform.rotation,
+//			Quaternion.LookRotation (targetTransform.position - transform.position),
+//			rotationspeed * Time.deltaTime);
+
+
 
 		//walk forward towards player
-		if (!staredAt) {
-			transform.position += transform.forward * movespeed * Time.deltaTime;
+		if (!staredAt && isMoving) {
+			transform.position -= transform.forward * movespeed * Time.deltaTime;
 		}
 
 
@@ -66,7 +75,6 @@ public class Ghost : MonoBehaviour {
 	void OnTriggerEnter (Collider other) {
 		if (other.gameObject.tag == "Player") {
 			JumpScare ();
-			//Debug.Log("bye");
 
 		}
 	}
@@ -105,7 +113,12 @@ public class Ghost : MonoBehaviour {
 	void JumpScare() {
 		//ghost comes in front of you, music plays
 		transform.position = targetTransform.position + targetTransform.forward;
+		Debug.Log("bye");
+
+		isMoving = false;
+
 		transform.LookAt (targetTransform.position);
+		transform.rotation *= Quaternion.Euler(0,180f,0);
 		//play music
 
 		//GameOver (); -->SceneManager.LoadScene() move to level manager?
