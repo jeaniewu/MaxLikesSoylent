@@ -413,13 +413,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetTransform: {fileID: 0}
-  levelManager: {fileID: 0}
   movespeed: 2
   rotationspeed: 2
   staredAt: 0
   farRange: 5
+  farScore: 1
   mediumRange: 3
+  mediumScore: 5
   closeRange: 1
+  closeScore: 10
 --- !u!54 &1888890779
 Rigidbody:
   m_ObjectHideFlags: 0

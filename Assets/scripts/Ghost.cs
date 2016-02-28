@@ -10,10 +10,8 @@ public class Ghost : MonoBehaviour {
 
 	public GameObject target;
 	public Transform targetTransform;
-	public GameObject levelManager;
 	public int movespeed = 2;
 	public int rotationspeed = 2;
-	//public int jumpScareRange = 1;
 	public bool staredAt = false;
 	public int farRange = 5;
 	public int farScore = 1;
@@ -28,13 +26,14 @@ public class Ghost : MonoBehaviour {
 
 		target = GameObject.FindWithTag ("Player");
 		targetTransform = target.transform;
-//		levelManager = GameObject.FindWithTag ("LevelManager");
+
 
 	}
 
 
 	// Update is called once per frame
 	void Update () {
+
 
 		//rotate towards player
 		transform.rotation = Quaternion.Slerp (transform.rotation,
@@ -45,6 +44,12 @@ public class Ghost : MonoBehaviour {
 		if (!staredAt) {
 			transform.position += transform.forward * movespeed * Time.deltaTime;
 		}
+
+
+
+//		if (Input.GetKey(KeyCode.Return)) {
+//			JumpScare();
+//		}
 
 
 	}
@@ -60,31 +65,36 @@ public class Ghost : MonoBehaviour {
 	void Death () {
 			//update level manager score
 
-	if (transform.position-target.position) > farRange) {
-		Destroy (GameObject);
+		float distanceFromPlayer = Vector3.Distance (transform.position, targetTransform.position);
+
+		if ( distanceFromPlayer > farRange) {
+		Destroy (gameObject);
 		}
 
-	if ((transform.position-target.position) < farRange) && ((transform.position) > mediumRange) {
-		levelManager.AddScore(farScore);
-		Destroy (GameObject);
+		if ((distanceFromPlayer < farRange) && (distanceFromPlayer > mediumRange)) {
+		Level.AddScore(farScore);
+		Destroy (gameObject);
 		}
 
-	if ((transform.position-target.position) > farRange) {
-		levelManager.AddScore(mediumScore);
-		Destroy (GameObject);
+		if ((distanceFromPlayer < mediumRange) && (distanceFromPlayer > closeRange)) {
+			Level.AddScore(mediumScore);
+			Destroy (gameObject);
 		}
 
-	if ((transform.position-target.position) > farRange) {
-		levelManager.AddScore(closeScore);
-		Destroy (GameObject);
+		if (distanceFromPlayer < closeRange) {
+			Level.AddScore(closeScore);
+			Destroy (gameObject);
 		}
 	}
 		
 	void JumpScare() {
 		//ghost comes in front of you, music plays
-		target.FaceThisGhost(transform.position);
+		transform.position = targetTransform.position + targetTransform.forward;
+		transform.LookAt (targetTransform.position);
+		//play music
+
 		//GameOver (); -->SceneManager.LoadScene() move to level manager?
-		levelManager.ItsGameOver();
+		Level.ItsGameOver();
 
 		}
 }
