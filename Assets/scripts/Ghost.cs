@@ -20,6 +20,9 @@ public class Ghost : MonoBehaviour
 
 	public GameObject gameManager;
 
+	public AudioSource audioSource;
+	public AudioClip jumpScareSound;
+
 	void Start ()
 	{
 		player = GameObject.FindWithTag ("Player").transform;
@@ -33,6 +36,8 @@ public class Ghost : MonoBehaviour
 		transform.rotation *= Quaternion.Euler (0, 180f, 0);
 
 		isMoving = true;
+
+		audioSource = GetComponent<AudioSource> ();
 	}
 
 	void Update ()
@@ -64,6 +69,7 @@ public class Ghost : MonoBehaviour
 
 	void JumpScare ()
 	{
+		
 		// Jump right in front of the player.
 		transform.position = player.position + player.forward;
 
@@ -73,6 +79,8 @@ public class Ghost : MonoBehaviour
 
 		// Stay in front of the player.
 		isMoving = false;
+
+		audioSource.Play ();
 
 		Invoke ("gameOver", 2f);
 	}
