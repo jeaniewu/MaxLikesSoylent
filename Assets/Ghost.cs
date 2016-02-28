@@ -39,9 +39,9 @@ public class Ghost : MonoBehaviour {
 			rotationspeed * Time.deltaTime);
 
 		//walk forward towards player
-		//while (!staredAt) {
+		if (!staredAt) {
 			transform.position += transform.forward * movespeed * Time.deltaTime;
-		//}
+		}
 
 		//within jump scare range? if yes, jump scare animation, and game over true.
 		//on collision
