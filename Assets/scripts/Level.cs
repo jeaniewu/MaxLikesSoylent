@@ -6,9 +6,9 @@ public class Level : MonoBehaviour {
 	public static int score = 0;
 	public static int level = 1;
 	public static bool gameover = false;
-	public int levelone = 0;
-	public int leveltwo = 30;
-	public int levelthree = 50;
+	public static int levelone = 0;
+	public static int leveltwo = 30;
+	public static int levelthree = 50;
 
 
 	public static int GetScore() {
