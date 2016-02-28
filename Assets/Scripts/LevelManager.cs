@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
 
 	public static int score = 0;
 	public static int level = 1;
-	public static int ghostCount = 0;
+	public static int ghostCount = 3;
 
 	// Score thresholds for each level.
 	public static int l1 = 0;
