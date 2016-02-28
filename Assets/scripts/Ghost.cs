@@ -57,34 +57,34 @@ public class Ghost : MonoBehaviour {
 		}
 	}
 
-	void Death () {
+//	void Death () {
 			//update level manager score
 
-	if (transform.position-target.position) > farRange) {
-		Destroy (GameObject);
-		}
-
-	if ((transform.position-target.position) < farRange) && ((transform.position) > mediumRange) {
-		levelManager.AddScore(farScore);
-		Destroy (GameObject);
-		}
-
-	if ((transform.position-target.position) > farRange) {
-		levelManager.AddScore(mediumScore);
-		Destroy (GameObject);
-		}
-
-	if ((transform.position-target.position) > farRange) {
-		levelManager.AddScore(closeScore);
-		Destroy (GameObject);
-		}
-	}
-		
-	void JumpScare() {
-		//ghost comes in front of you, music plays
-		target.FaceThisGhost(transform.position);
-		//GameOver (); -->SceneManager.LoadScene() move to level manager?
-		levelManager.ItsGameOver();
-
-		}
+//		if ((transform.position-target.position) > farRange) {
+//		Destroy (GameObject);
+//		}
+//
+//	if ((transform.position-target.position) < farRange && (transform.position) > mediumRange) {
+//		levelManager.AddScore(farScore);
+//		Destroy(GameObject);
+//		}
+//
+//	if ((transform.position-target.position) > farRange) {
+//		levelManager.AddScore(mediumScore);
+//		Destroy (GameObject);
+//		}
+//
+//	if ((transform.position-target.position) > farRange) {
+//		levelManager.AddScore(closeScore);
+//		Destroy (GameObject);
+//		}
+//	}
+//		
+//	void JumpScare() {
+//		//ghost comes in front of you, music plays
+//		target.FaceThisGhost(transform.position);
+//		//GameOver (); -->SceneManager.LoadScene() move to level manager?
+//		levelManager.ItsGameOver();
+//
+//		}
 }
