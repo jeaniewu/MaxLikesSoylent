@@ -3,30 +3,37 @@ using System.Collections;
 
 public class Level : MonoBehaviour {
 
-	public int score;
-	public bool gameover = false;
+	public static int score = 0;
+	public static int level = 1;
+	public static bool gameover = false;
+	public static int levelone = 0;
+	public static int leveltwo = 30;
+	public static int levelthree = 50;
+	public static int currNumGhost = 0;
 
-	// Use this for initialization
-	void Start () {
-		//initialize random generate ghost
-		//initialize score
-		//initialize level
+
+	public static int GetScore() {
+		return score;
 	}
 
-	// Update is called once per frame
-	void Update () {
-
-		//if score is howmany, increase level
-		//generate more ghosts according to the level
-		//if gameover, change scene
-
+	public static int GetCurrNumGhost() {
+		return currNumGhost;
 	}
 
-	void AddScore (int x) {
+	public static void AddScore (int x) {
 		score += x;
+		if (score < levelone) {
+			level = 1;
+		}
+		if (score > leveltwo) {
+			level = 2;
+		}
+		if (score > levelthree) {
+			level = 3;
+		}
 	}
 
-	void ItsGameOver () {
+	public static void ItsGameOver () {
 		gameover = true;
 	}
 }
