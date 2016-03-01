@@ -260,6 +260,7 @@ public class OVRPlayerController : MonoBehaviour
 		ortEuler.z = ortEuler.x = 0f;
 		ort = Quaternion.Euler(ortEuler);
 
+		/*
 		if (moveForward)
 			MoveThrottle += ort * (transform.lossyScale.z * moveInfluence * Vector3.forward);
 		if (moveBack)
@@ -268,6 +269,7 @@ public class OVRPlayerController : MonoBehaviour
 			MoveThrottle += ort * (transform.lossyScale.x * moveInfluence * BackAndSideDampen * Vector3.left);
 		if (moveRight)
 			MoveThrottle += ort * (transform.lossyScale.x * moveInfluence * BackAndSideDampen * Vector3.right);
+		*/
 
 		Vector3 euler = transform.rotation.eulerAngles;
 
