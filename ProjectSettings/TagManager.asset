@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ghost
   - GameManager
+  - SoundManager
   layers:
   - Default
   - TransparentFX
