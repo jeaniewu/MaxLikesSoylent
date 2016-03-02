@@ -10,13 +10,16 @@ public class Scoreboard : MonoBehaviour
 	void Start ()
 	{
 		scoreboard = GetComponent<Text> ();
-		scoreboard.text = "Your Score: " + GetComponentInParent<LevelManager> ().GetScore ().ToString ();
 	}
 
 	void Update ()
 	{
-//		if (Input.GetKey (KeyCode.Return)) {
-//			SceneManager.LoadScene ("Main");
-//		}
+		scoreboard.text = "Your Score: " + Global.GetScore ().ToString () + "\n";
+		scoreboard.text += "High Score: " + Global.GetHighScore ().ToString ();
+
+		if (Input.GetKey (KeyCode.F)) {
+			SceneManager.LoadScene ("Main");
+			Global.ResetScore ();
+		}
 	}
 }

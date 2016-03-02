@@ -9,23 +9,11 @@ public class LevelManager : MonoBehaviour
 	public int ghostCount;
 	public int kills;
 
-	// Score thresholds for each level.
-	public static int l1 = 0;
-	public static int l2 = 30;
-	public static int l3 = 50;
-
-
 	void Start(){
 		gameOver = false;
-		score = 0;
-		ghostCount = 1;
+		ghostCount = 3;
 		kills = 0;
 		GetComponent<GhostManager> ().generateGhosts (ghostCount);
-	}
-
-	public int GetScore ()
-	{
-		return score;
 	}
 
 	public int getGhostCount ()
@@ -36,19 +24,7 @@ public class LevelManager : MonoBehaviour
 	public void incKills () {
 		kills++;
 	}
-
-	public void addScore (int x)
-	{
-		score += x;
-//		if (score >= l2) {
-//			ghostCount = 2;
-//
-//		}
-//		if (score >= l3) {
-//			ghostCount = 3;
-//		}
-	}
-
+		
 	public void endGame ()
 	{
 		gameOver = true;
@@ -56,7 +32,7 @@ public class LevelManager : MonoBehaviour
 
 	void Update ()
 	{
-		if (kills == ghostCount) {
+		if (kills >= ghostCount) {
 			ghostCount++;
 			kills = 0;
 			GetComponent<GhostManager> ().generateGhosts (ghostCount);

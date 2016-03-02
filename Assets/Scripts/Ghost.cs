@@ -8,7 +8,7 @@ public class Ghost : MonoBehaviour
 
 	public bool staredAt = false;
 	public bool isMoving;
-	public int moveSpeed = 4;
+	public int moveSpeed = 12;
 
 
 	public int farRange = 5;
@@ -54,7 +54,7 @@ public class Ghost : MonoBehaviour
 
 	void OnBecameVisible ()
 	{
-		staredAt = true;
+		staredAt = false;
 	}
 
 	void OnBecameInvisible ()
@@ -68,6 +68,10 @@ public class Ghost : MonoBehaviour
 		if (other.gameObject.tag == "Player") {
 			JumpScare ();
 		}
+	}
+
+	void OnDestroy() {
+		gameManager.GetComponent<LevelManager> ().incKills ();
 	}
 
 	void JumpScare ()
@@ -85,36 +89,13 @@ public class Ghost : MonoBehaviour
 
 		audioSource.Play ();
 
-		Invoke ("gameOver", 2f);
+		Invoke ("gameOver", 0.5f);
 	}
 
 
 	void gameOver(){
+		gameManager.GetComponent<LevelManager> ().endGame ();
 		SceneManager.LoadScene ("Finish");
+		Global.UpdateHighScore ();
 	}
-
-
-	//	void Death ()
-	//	{
-	//		float distanceFromPlayer = Vector3.Distance (transform.position, player.position);
-	//
-	//		if (distanceFromPlayer > farRange) {
-	//			Destroy (gameObject);
-	//		}
-	//			
-	//		if ((distanceFromPlayer < farRange) && (distanceFromPlayer > mediumRange)) {
-	//			Level.AddScore (farScore);
-	//			Destroy (gameObject);
-	//		}
-	//
-	//		if ((distanceFromPlayer < mediumRange) && (distanceFromPlayer > closeRange)) {
-	//			Level.AddScore (mediumScore);
-	//			Destroy (gameObject);
-	//		}
-	//
-	//		if (distanceFromPlayer < closeRange) {
-	//			Level.AddScore (closeScore);
-	//			Destroy (gameObject);
-	//		}
-	//	}
 }
