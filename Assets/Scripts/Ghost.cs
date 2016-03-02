@@ -47,6 +47,9 @@ public class Ghost : MonoBehaviour
 		if (!staredAt && isMoving) {
 			transform.position -= transform.forward * moveSpeed * Time.deltaTime;
 		}
+
+		if (Input.GetKey (KeyCode.A))
+			JumpScare ();
 	}
 
 	void OnBecameVisible ()
