@@ -14,12 +14,12 @@ public class Scoreboard : MonoBehaviour
 
 	void Update ()
 	{
-		scoreboard.text = "Your Score: " + Global.GetScore ().ToString () + "\n";
-		scoreboard.text += "High Score: " + Global.GetHighScore ().ToString ();
+		scoreboard.text = "Your Score: " + ScoreManager.GetScore ().ToString () + "\n";
+		scoreboard.text += "High Score: " + ScoreManager.GetHighScore ().ToString ();
 
 		if (Input.GetKey (KeyCode.F)) {
 			SceneManager.LoadScene ("Main");
-			Global.ResetScore ();
+			ScoreManager.ResetScore ();
 		}
 	}
 }

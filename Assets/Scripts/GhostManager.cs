@@ -20,12 +20,13 @@ public class GhostManager : MonoBehaviour
 		return pos;
 	}
 
-	public void generateGhosts(int ghostCount){
+	public void GenerateGhosts (int ghostCount)
+	{
 		for (int i = 0; i < ghostCount; i++) {
 			Vector3 ghostPos = RandomCircle (playerPos, 25);
 			Quaternion ghostRot = Quaternion.FromToRotation (Vector3.forward, playerPos - ghostPos);
 			Instantiate (Resources.Load ("Bunny"), ghostPos, ghostRot);
-			Debug.Log ("Hello");
+			Debug.Log ("Bunny says hi :)");
 		}
 	}
 }

@@ -3,17 +3,15 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
-	public bool gameOver;
-
 	public int score;
 	public int ghostCount;
 	public int kills;
 
-	void Start(){
-		gameOver = false;
+	void Start ()
+	{
 		ghostCount = 3;
 		kills = 0;
-		GetComponent<GhostManager> ().generateGhosts (ghostCount);
+		GetComponent<GhostManager> ().GenerateGhosts (ghostCount);
 	}
 
 	public int getGhostCount ()
@@ -21,13 +19,9 @@ public class LevelManager : MonoBehaviour
 		return ghostCount;
 	}
 
-	public void incKills () {
-		kills++;
-	}
-		
-	public void endGame ()
+	public void incKills ()
 	{
-		gameOver = true;
+		kills++;
 	}
 
 	void Update ()
@@ -35,7 +29,7 @@ public class LevelManager : MonoBehaviour
 		if (kills >= ghostCount) {
 			ghostCount++;
 			kills = 0;
-			GetComponent<GhostManager> ().generateGhosts (ghostCount);
+			GetComponent<GhostManager> ().GenerateGhosts (ghostCount);
 		}
 		if (Input.GetKey (KeyCode.Escape)) {
 			Application.Quit ();

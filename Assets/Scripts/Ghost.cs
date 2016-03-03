@@ -5,39 +5,32 @@ using UnityEngine.SceneManagement;
 public class Ghost : MonoBehaviour
 {
 	public Transform player;
+	public GameObject gameManager;
+	public AudioSource audioSource;
 
 	public bool staredAt = false;
 	public bool isMoving;
 	public int moveSpeed = 12;
 
-
-	public int farRange = 5;
-	public int farScore = 1;
-	public int mediumRange = 3;
-	public int mediumScore = 5;
-	public int closeRange = 1;
-	public int closeScore = 10;
-
-	public GameObject gameManager;
-
-	public AudioSource audioSource;
-	public AudioClip jumpScareSound;
-
 	void Start ()
 	{
 		player = GameObject.FindWithTag ("Player").transform;
 		gameManager = GameObject.FindWithTag ("GameManager");
+		audioSource = GetComponent<AudioSource> ();
 
+		// Increase moveSpeed for every wave cleared.
 		if (gameManager.GetComponent<LevelManager> ().getGhostCount () % 2 == 0) {
-			moveSpeed+=2;
+			moveSpeed += 2;
+			Debug.Log ("moveSpeed increased.");
 		}
-		// Face the player and rotate 180 degrees because the model is fucked up. 
+
+		// Face the player.
+		// Done by rotating an additional 180 degrees because the model is fucked up. 
 		transform.LookAt (player);
 		transform.rotation *= Quaternion.Euler (0, 180f, 0);
 
+		// Start moving.
 		isMoving = true;
-
-		audioSource = GetComponent<AudioSource> ();
 	}
 
 	void Update ()
@@ -48,13 +41,14 @@ public class Ghost : MonoBehaviour
 			transform.position -= transform.forward * moveSpeed * Time.deltaTime;
 		}
 
-		if (Input.GetKey (KeyCode.A))
+		if (Input.GetKey (KeyCode.A)) {
 			JumpScare ();
+		}
 	}
 
 	void OnBecameVisible ()
 	{
-		staredAt = false;
+		staredAt = true;
 	}
 
 	void OnBecameInvisible ()
@@ -70,13 +64,13 @@ public class Ghost : MonoBehaviour
 		}
 	}
 
-	void OnDestroy() {
+	void OnDestroy ()
+	{
 		gameManager.GetComponent<LevelManager> ().incKills ();
 	}
 
 	void JumpScare ()
 	{
-		
 		// Jump right in front of the player.
 		transform.position = player.position + player.forward;
 
@@ -89,13 +83,12 @@ public class Ghost : MonoBehaviour
 
 		audioSource.Play ();
 
-		Invoke ("gameOver", 0.5f);
+		Invoke ("GameOver", 0.5f);
 	}
 
-
-	void gameOver(){
-		gameManager.GetComponent<LevelManager> ().endGame ();
+	void GameOver ()
+	{
 		SceneManager.LoadScene ("Finish");
-		Global.UpdateHighScore ();
+		ScoreManager.UpdateHighScore ();
 	}
 }
